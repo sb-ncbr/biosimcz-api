@@ -11,6 +11,7 @@ from oarepo_rdm.model.presets import rdm_basic_preset
 from oarepo_rdm.model.presets import rdm_minimal_preset
 from oarepo_rdm.model.presets.rdm.resources.records.exports import RDMCompleteExportsPreset
 
+from .datatypes import PathSafeObjectDataType
 from .serializers import DataCiteJSONSerializer
 
 # TODO: Consider letting users add an image/icon for the model,
@@ -33,7 +34,10 @@ experiment_model = model(
 
     ],
     types=[
-        from_yaml("metadata.yaml", __file__)
+        from_yaml("metadata.yaml", __file__),
+        # Overrides the built-in `object` datatype (see datatypes.py) so that
+        # facets of the nested `metadata.metadata.*` subtree get correct paths.
+        {"object": PathSafeObjectDataType},
     ],
     metadata_type="Metadata",
     customizations=[
