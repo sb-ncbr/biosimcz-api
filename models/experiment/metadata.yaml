@@ -107,6 +107,7 @@ Metadata:
             reference_temperature:
               type: double
               min_inclusive: 0
+              searchable: false
               label:
                 en: Reference Temperature (K)
               help:
@@ -115,6 +116,7 @@ Metadata:
             reference_pressure:
               type: double
               min_inclusive: 0
+              searchable: false
               label:
                 en: Reference Pressure (bar)
               help:
@@ -148,6 +150,7 @@ Metadata:
             simulation_length:
               type: double
               min_exclusive: 0
+              searchable: false
               label:
                 en: Simulation Length (ns)
               help:
@@ -156,6 +159,7 @@ Metadata:
             timestep:
               type: double
               min_exclusive: 0
+              searchable: false
               label:
                 en: Timestep (fs)
               help:
@@ -164,6 +168,7 @@ Metadata:
             number_of_steps:
               type: long
               min_exclusive: 0
+              searchable: false
               label:
                 en: Number of Steps
               help:
@@ -177,6 +182,7 @@ Metadata:
             total_atoms:
               type: long
               min_exclusive: 0
+              searchable: false
               label:
                 en: Total Atoms
               help:
@@ -201,8 +207,11 @@ Metadata:
                   Box lengths (a, b, c) and, if applicable,
                   angles (alpha, beta, gamma).
               items:
+                # ArrayDataType.get_facet only forwards `label` to the item
+                # type, so the flag has to live on the items themselves.
                 type: double
                 min_exclusive: 0
+                searchable: false
 
 RDMCreators:
   label:
